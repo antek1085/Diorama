@@ -8,5 +8,5 @@ public enum InteractionType
     Fireplace, // particle
     ChestOpen, //animcja/leżenie
     LightOn,
-    SoS,
+    Shark
 }

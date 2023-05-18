@@ -17,11 +17,9 @@ public class Movement : MonoBehaviour
     public TextMeshProUGUI interactionText;
     bool isInteractable;
     public float moveSpeed;
-    float horizontalInput;
-    float verticalInput;
     Rigidbody rb;
     Vector3 moveDirection;
-    public Transform orientation;
+    private NavMeshAgent agent;
 
 
     // Start is called before the first frame update
@@ -31,38 +29,26 @@ public class Movement : MonoBehaviour
         interactionText.enabled = false;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (isInteractable == true && Input.GetKeyDown(KeyCode.Space))
         {
             _playerInteraction?.OnPlayerInteraction();
         }
-        MyInput();
-        
-    }
-    void FixedUpdate()
-    {
-        MovePlayer();
-    }
 
-    void MyInput()
-    {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            SetDestinationToMousePosition();
+        }
     }
-    void MovePlayer()
-    {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rb.AddForce(moveDirection * moveSpeed * 10);
-    }
-
     void OnTriggerEnter(Collider other)
     {
         _playerInteraction = other.GetComponent<IPlayerInteraction>();
-        Debug.Log("3");
         switch (_interactionType)
         {
             case InteractionType.Fireplace:
@@ -74,23 +60,22 @@ public class Movement : MonoBehaviour
             case InteractionType.LightOn:
                 InTrigger();
                 break;
-            case InteractionType.SoS:
-                InTrigger();
-                break;
-            default:
+            case  InteractionType.Shark:
                 break;
         }
         
     }
- /*void SetDestinationToMousePosition()
+    void SetDestinationToMousePosition()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.red,1000f);
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(1);
             agent.SetDestination(hit.point);
         }
-    } */
+    } 
     void OnTriggerExit(Collider other)
     {
         OutOfTrigger();
@@ -105,15 +90,5 @@ public class Movement : MonoBehaviour
     {
         isInteractable = false;
         interactionText.enabled = false;
-    }
-    void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-            
     }
 }
