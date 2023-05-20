@@ -57,6 +57,9 @@ using UnityEngine;
             case InteractionType.Shark:
                 GameEvents.current.FishTrigggerEnter();
                 break;
+            case InteractionType.coconutfall:
+                gameObject.GetComponent<Rigidbody>().useGravity = enabled;
+                break;
         }
     }
 }

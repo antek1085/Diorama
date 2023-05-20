@@ -62,6 +62,9 @@ public class Movement : MonoBehaviour
                 break;
             case  InteractionType.Shark:
                 break;
+            case InteractionType.coconutfall:
+                _playerInteraction?.OnPlayerInteraction();
+                break;
         }
         
     }
