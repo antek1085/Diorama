@@ -1,7 +1,8 @@
     using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+    using Unity.VisualScripting;
+    using UnityEngine;
 
     public class Interraction : MonoBehaviour,IPlayerInteraction
 {
@@ -11,6 +12,8 @@ using UnityEngine;
     private bool isLightOn = false;
     private Animator animator;
     private readonly int IsChestOpen = Animator.StringToHash("IsChestOpen");
+    AudioSource audioData;
+    [SerializeField] ScriptableObjectBool IsCampireOn;
 
     public void OnPlayerInteraction()
     {
@@ -23,12 +26,16 @@ using UnityEngine;
                 {
                     gameObject.GetComponent<ParticleSystem>().Play();
                     isPlaying = true;
+                    audioData = GetComponent<AudioSource>();
+                    audioData.Play(0);
+                    IsCampireOn.Bool = true;
                 }
                 else if(isPlaying == true)
                 {
-                    Debug.Log(2);
                     gameObject.GetComponent<ParticleSystem>().Stop();
                     isPlaying = false;
+                    audioData.Stop();
+                    IsCampireOn.Bool = false;
                 }
                 break;
             case InteractionType.ChestOpen:
@@ -46,6 +53,7 @@ using UnityEngine;
                 {
                     gameObject.GetComponent<Light>().enabled = true;
                     isLightOn = true;
+                    
                 }
                 else if (isLightOn == true)
                 {
@@ -53,12 +61,6 @@ using UnityEngine;
                     isLightOn = false;
                 }
 
-                break;
-            case InteractionType.Shark:
-                GameEvents.current.FishTrigggerEnter();
-                break;
-            case InteractionType.coconutfall:
-                gameObject.GetComponent<Rigidbody>().useGravity = enabled;
                 break;
         }
     }
