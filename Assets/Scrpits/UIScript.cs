@@ -17,13 +17,6 @@ public class UIScript : MonoBehaviour
       // Update is called once per frame
       void Update()
       {
-          if (SOBool.Bool == true)
-          {
-              interactionText.enabled = true;
-          }
-          else
-          {
-              interactionText.enabled = false;
-          }
+          interactionText.enabled = SOBool;
       }
 }
