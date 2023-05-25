@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,12 @@ public class InteractionPlayerTrigger : MonoBehaviour
    [SerializeField] ScriptableObjectBool SOBool;
 
    // Update is called once per frame
-    void Update()
+   private void Awake()
+   {
+       SOBool.Bool = false;
+   }
+
+   void Update()
     {
         if (isInteractable == true && Input.GetKeyDown(KeyCode.Space))
         {

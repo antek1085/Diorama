@@ -10,13 +10,13 @@ public class UIScript : MonoBehaviour
     [SerializeField] ScriptableObjectBool SOBool;
     // Start is called before the first frame update
     void Start()
-    {
-          interactionText.enabled = false;
+    { 
+        SOBool.Bool = false;
     }
   
       // Update is called once per frame
-      void Update()
-      {
-          interactionText.enabled = SOBool;
-      }
+    void Update()
+    { 
+        interactionText.enabled = SOBool.Bool;
+    }
 }
