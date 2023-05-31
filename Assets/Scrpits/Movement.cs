@@ -8,13 +8,13 @@ using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
-    Vector3 mousePosition;
-    Rigidbody rb;
-    Vector3 moveDirection;
-    private NavMeshAgent agent;
+   private Vector3 mousePosition;
+   private Rigidbody rb;
+   private Vector3 moveDirection;
+   private NavMeshAgent agent;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;

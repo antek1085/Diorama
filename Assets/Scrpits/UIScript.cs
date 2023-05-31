@@ -19,4 +19,5 @@ public class UIScript : MonoBehaviour
     { 
         interactionText.enabled = SOBool.Bool;
     }
+    //zostawiam to ponieważ potrzebowałem w projekcie Scriptable Object chociaż że lepiej było by to zrobić w skrypcie Movement
 }

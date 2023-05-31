@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class InteractionPlayerTrigger : MonoBehaviour
 {
-    InteractionType _interactionType;
-    IPlayerInteraction _playerInteraction;
-    bool isInteractable;
+   private InteractionType _interactionType;
+   private IPlayerInteraction _playerInteraction; 
+   private bool isInteractable;
 
    [SerializeField] ScriptableObjectBool SOBool;
 

@@ -1691,7 +1691,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5248031614244282704, guid: 471229c0c41bfb949b380d7733368729, type: 3}
+  - {fileID: 2100000, guid: 3c3f302caed82aa48a2d9f21319f61af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1731,6 +1731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832330572}
   - component: {fileID: 832330571}
+  - component: {fileID: 832330573}
   - component: {fileID: 832330570}
   m_Layer: 0
   m_Name: Fish
@@ -1942,6 +1943,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832330573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832330569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 40306178, guid: aa0b1eebb5db27a419fa4564bbe5c9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: 0
+  onEnableBehaviour: 0
+  onDisableBehaviour: 0
 --- !u!1 &850238827
 GameObject:
   m_ObjectHideFlags: 0

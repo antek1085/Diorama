@@ -12,8 +12,18 @@ using System.Collections.Generic;
     private bool isLightOn = false;
     private Animator animator;
     private readonly int IsChestOpen = Animator.StringToHash("IsChestOpen");
-    AudioSource audioData;
+    private AudioSource audioData;
     [SerializeField] ScriptableObjectBool IsCampireOn;
+    private ParticleSystem particleSystem;
+    private Light light;
+    private string animatorBool = "New Trigger";
+    
+
+    private void Awake()
+    {
+      particleSystem = this.GetComponent<ParticleSystem>();
+      light = GetComponent<Light>();
+    }
 
     public void OnPlayerInteraction()
     {
@@ -24,7 +34,7 @@ using System.Collections.Generic;
             case InteractionType.Fireplace:
                 if (isPlaying == false)
                 {
-                    gameObject.GetComponent<ParticleSystem>().Play();
+                    particleSystem.Play();
                     isPlaying = true;
                     audioData = GetComponent<AudioSource>();
                     audioData.Play(0);
@@ -32,7 +42,7 @@ using System.Collections.Generic;
                 }
                 else if(isPlaying == true)
                 {
-                    gameObject.GetComponent<ParticleSystem>().Stop();
+                    particleSystem.Stop();
                     isPlaying = false;
                     audioData.Stop();
                     IsCampireOn.Bool = false;
@@ -45,22 +55,23 @@ using System.Collections.Generic;
                    animator.SetBool(IsChestOpen, false);
                    break;
                }
+               
                animator.SetBool(IsChestOpen, true);
-               animator.SetTrigger("New Trigger");
+               animator.SetTrigger(animatorBool);
+              
                break;
             case InteractionType.LightOn:
                 if (isLightOn == false)
                 {
-                    gameObject.GetComponent<Light>().enabled = true;
+                    light.enabled = true;
                     isLightOn = true;
                     
                 }
                 else if (isLightOn == true)
                 {
-                    gameObject.GetComponent<Light>().enabled = false;
+                    light.enabled = false;
                     isLightOn = false;
                 }
-
                 break;
         }
     }
